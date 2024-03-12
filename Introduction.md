@@ -33,7 +33,7 @@ Dodatkowe informacje:
 
 
 ## Projekt Risc-V
-Wymagania dotyczące implementacji projektu Risc-V (ich nieprzestrzeganie skutkuje obniżeniem oceny):
+Wymagania dotyczące implementacji projektu Risc-V (ich nieprzestrzeganie będzie skutkować obniżeniem oceny):
 
 - Dla projektów operujacych na obrazach:
   - obrazy powinny być wczytywane z dysku i zapisywane na dysk w formacie [BMP](https://en.wikipedia.org/wiki/BMP_file_format),
@@ -48,7 +48,11 @@ Wymagania dotyczące implementacji projektu Risc-V (ich nieprzestrzeganie skutku
   - Dzielenie: M / (2^N) => M >> N,
   - Modulo: M % (2^N) => M & (2^N - 1) - lub maska bitowa z N-jedynkami, e.g. 7 % 4 = 7 % 2^2 = 7 & (2^2 - 1) = 7 & 0x03 = 0b0111 & 0b0011 = 0b0011
 
+- Nie należy uzywać wielokrotnych wcięć przy formatoawniu (etykiety - bez wcięcia, kod - jedno wcięcie),
+
+- Należy minimalizować ilość wywołań systemowych - wczytywać/zapisywać cały wiersz pikseli z/do pliku, zamiast każdego piksela osobno, lub cały obraz, zamiast każdego wiersza osobno, etc.
+- Należy minimalizować ilość dostępów do pamięci poprzez sięganie po wiele bajtów jednocześnie - używać instrukcji lw/sw, zamiast lb/sb. Należy pamiętać o wyrównaniu dostępów do pamięci.
 
 ### Projekt Intel-x86
+Wymagania dotyczące implementacji projektu Intel-x86 (ich nieprzestrzeganie będzie skutkować obniżeniem oceny):
 TBD
-
