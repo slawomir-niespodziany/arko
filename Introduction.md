@@ -35,13 +35,20 @@ Dodatkowe informacje:
 ## Projekt Risc-V
 Wymagania dotyczące implementacji projektu Risc-V (ich nieprzestrzeganie skutkuje obniżeniem oceny):
 
-- Obrazy powinny być wczytywane z dysku i zapisywane na dysk w formacie [BMP](https://en.wikipedia.org/wiki/BMP_file_format).
-- operacje bitowe
-
-- Obowiązuje zakaz używania typów zmiennopozycyjnych. W przypadku konieczności wykonywania obliczeń ułamkowych należy używać typów stałopozycyjnych (fixed-point).
+- Dla projektów operujacych na obrazach:
+  - obrazy powinny być wczytywane z dysku i zapisywane na dysk w formacie [BMP](https://en.wikipedia.org/wiki/BMP_file_format),
+  - dla wczytywanych bitmap należy obsłużyć padding (szerokość może byc niepodzielna przez 4),
+  - dla projektów generujących grafikę - program powinien być w stanie wygenerować bitmapy o dowolnej szerokości (również niepodzielnej przez 4),
+  
+- Obowiązuje zakaz używania typów zmiennopozycyjnych. W przypadku konieczności wykonywania obliczeń ułamkowych należy używać typów stałoprzecinkowych ([Fixed-Point](Fixed-Point-Arithmetics.md)),
 - Użyty typ fixed-point powinien mieć tak dobraną ilośc bitów całkowitych i ułamkowych, aby maksymalizować dokładność obliczeń, jednocześnie nie dopuszczając do przepełnienia,
 
-TBD
+- Działania operujące na wartościach związanych z potegami liczby 2 należy implementować z użyciem operacji bitowych:
+  - Mnożenie: M * (2^N) => M << N,
+  - Dzielenie: M / (2^N) => M >> N,
+  - Modulo: M % (2^N) => M & (2^N - 1) - lub maska bitowa z N-jedynkami, e.g. 7 % 4 = 7 % 2^2 = 7 & (2^2 - 1) = 7 & 0x03 = 0b0111 & 0b0011 = 0b0011
+
 
 ### Projekt Intel-x86
 TBD
+
