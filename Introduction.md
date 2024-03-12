@@ -38,10 +38,13 @@ Wymagania dotyczące implementacji projektu Risc-V (ich nieprzestrzeganie będzi
 - Dla projektów operujacych na obrazach:
   - obrazy powinny być wczytywane z dysku i zapisywane na dysk w formacie [BMP](https://en.wikipedia.org/wiki/BMP_file_format),
   - dla wczytywanych bitmap należy obsłużyć padding (szerokość może byc niepodzielna przez 4),
-  - dla projektów generujących grafikę - program powinien być w stanie wygenerować bitmapy o dowolnej szerokości (również niepodzielnej przez 4),
+  - dla projektów generujących grafikę - program powinien otwierać istniejący plik BMP (o dowolnej szerokości) i na nim rysować wynik działania,
+  - dla żadnego projektu nie należy tworzyć nowego pliku BMP,
+  - operacje na bitmapie należy wykonywać w pamięci (należy dynamicznie zaalokować odpowiednią ilość pamięci),
   
-- Obowiązuje zakaz używania typów zmiennopozycyjnych. W przypadku konieczności wykonywania obliczeń ułamkowych należy używać typów stałoprzecinkowych ([Fixed-Point](Fixed-Point-Arithmetics.md)),
+- Obowiązuje zakaz używania typów zmiennoprzecinkowych. W przypadku konieczności wykonywania obliczeń ułamkowych należy używać typów stałoprzecinkowych ([Fixed-Point](Fixed-Point-Arithmetics.md)),
 - Użyty typ fixed-point powinien mieć tak dobraną ilośc bitów całkowitych i ułamkowych, aby maksymalizować dokładność obliczeń, jednocześnie nie dopuszczając do przepełnienia,
+- Obowiązuje zakaz wykonywania obliczeń ułamkowych z użyciem podstawy dziesiętnej (np. w dziedzinie 1/10000),
 
 - Działania operujące na wartościach związanych z potegami liczby 2 należy implementować z użyciem operacji bitowych:
   - Mnożenie: M * (2^N) => M << N,
@@ -52,6 +55,8 @@ Wymagania dotyczące implementacji projektu Risc-V (ich nieprzestrzeganie będzi
 
 - Należy minimalizować ilość wywołań systemowych - wczytywać/zapisywać cały wiersz pikseli z/do pliku, zamiast każdego piksela osobno, lub cały obraz, zamiast każdego wiersza osobno, etc.
 - Należy minimalizować ilość dostępów do pamięci poprzez sięganie po wiele bajtów jednocześnie - używać instrukcji lw/sw, zamiast lb/sb. Należy pamiętać o wyrównaniu dostępów do pamięci.
+
+- Projekt podlega obronie w momencie oddania. 
 
 ### Projekt Intel-x86
 Wymagania dotyczące implementacji projektu Intel-x86 (ich nieprzestrzeganie będzie skutkować obniżeniem oceny):
