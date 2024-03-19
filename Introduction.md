@@ -1,7 +1,10 @@
 # ARKO - Wprowadzenie
 
 ## Harmonogram ćwiczeń laboratoryjnych
-Grupa | 102 | 103 | 107 | 108
+
+Brak wyszczególnionej godziny oznacza (pełny) dwugodzinny termin. Zajęcia które nie sa kolokwiami, odbywają się wg zamieszczonego poniżej harmonogramu:
+
+Ćwiczenie | Gr. 102 | Gr. 103 | Gr. 107 | Gr. 108
 -|-|-|-|-
 Risc-V - Wprowadzenie, rozdanie projektów | 19.03 | 19.03 | 12.03 | 12.03
 Risc-V - Sprawdzian | 26.03 | 26.03 | 16.04 | 16.04
@@ -10,11 +13,12 @@ Risc-V - Termin oddania projektów **&** Intel x86 - Rozdanie projektów	| 14.05
 Intel x86 - Sprawdzian, Konsultacje	| 21.05 | 21.05 | 28.05 | 28.05
 Intel x86 - Termin oddania projektów | 14.05 @ **17<sup>15</sup>** | 14.05 @ **19<sup>15</sup>** | 14.05 @ **16<sup>15</sup>** | 14.05 @ **18<sup>15</sup>**
 
-Kolokwia | 102 | 103 | 107 | 108
--|-|-|-|-
-Kol. 1 | 9.04 @ **17<sup>15</sup>** | 9.04 @ **19<sup>15</sup>** | 9.04 @ **16<sup>15</sup>** | 9.04 @ **18<sup>15</sup>**
-Kol. 2 | 11.06 @ **17<sup>15</sup>** | 11.06 @ **19<sup>15</sup>** | 11.06 @ **16<sup>15</sup>** | 11.06 @ **18<sup>15</sup>**
+Kolokwia odbywają sie zgodnie z harmonogramem przedstawionym na wykładzie:
 
+Kolokwium | 102 | 103 | 107 | 108
+-|-|-|-|-
+Kolokwium 1 | 9.04 @ **17<sup>15</sup>** | 9.04 @ **19<sup>15</sup>** | 9.04 @ **16<sup>15</sup>** | 9.04 @ **18<sup>15</sup>**
+Kolokwium 2 | 11.06 @ **17<sup>15</sup>** | 11.06 @ **19<sup>15</sup>** | 11.06 @ **16<sup>15</sup>** | 11.06 @ **18<sup>15</sup>**
 
 ## Punktacja
 Total | (/20pkt)
