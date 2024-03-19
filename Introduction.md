@@ -1,12 +1,19 @@
 # ARKO - Wprowadzenie
 
-## Plan zajęć
-- Lab 1 - Wprowadzenie do architektury Risc-V, Rozdanie tematów projektów Risc-V,
-- Lab 2 - Kolokwium Risc-V,
-- Lab 3 - Wprowadzenie do architektury Intel-x86, Konsultacje projektów Risc-V
-- Lab 4 - Termin oddania projektów Risc-V, Rozdanie tematów projektów Intel-x86,
-- Lab 5 - Kolokwium Intel x86, Konsultacje Intel-x86,
-- Lab 6 - Termin oddania projektów Intel-x86.
+## Harmonogram ćwiczeń laboratoryjnych
+Grupa | 102 | 103 | 107 | 108
+-|-|-|-|-
+Risc-V - Wprowadzenie, rozdanie projektów | 19.03 | 19.03 | 12.03 | 12.03
+Risc-V - Sprawdzian | 26.03 | 26.03 | 16.04 | 16.04
+Intel x86 - Wprowadzenie **&** Risc-V - Konsultacje | 23.04 | 23.04 | 7.05 | 7.05
+Risc-V - Termin oddania projektów **&** Intel x86 - Rozdanie projektów	| 14.05 @ **17<sup>15</sup>** | 14.05 @ **19<sup>15</sup>** | 14.05 @ **16<sup>15</sup>** | 14.05 @ **18<sup>15</sup>**
+Intel x86 - Sprawdzian, Konsultacje	| 21.05 | 21.05 | 28.05 | 28.05
+Intel x86 - Termin oddania projektów | 14.05 @ **17<sup>15</sup>** | 14.05 @ **19<sup>15</sup>** | 14.05 @ **16<sup>15</sup>** | 14.05 @ **18<sup>15</sup>**
+
+Kolokwia | 102 | 103 | 107 | 108
+-|-|-|-|-
+Kol. 1 | 9.04 @ **17<sup>15</sup>** | 9.04 @ **19<sup>15</sup>** | 9.04 @ **16<sup>15</sup>** | 9.04 @ **18<sup>15</sup>**
+Kol. 2 | 11.06 @ **17<sup>15</sup>** | 11.06 @ **19<sup>15</sup>** | 11.06 @ **16<sup>15</sup>** | 11.06 @ **18<sup>15</sup>**
 
 
 ## Punktacja
