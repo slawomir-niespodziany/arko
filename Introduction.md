@@ -9,8 +9,8 @@ Brak wyszczególnionej godziny oznacza (pełny) dwugodzinny termin. Terminy kolo
 Risc-V - Wprowadzenie, rozdanie projektów | 19.03 | 19.03 | 12.03 | 12.03
 Risc-V - Sprawdzian | 26.03 | 26.03 | 16.04 | 16.04
 Intel x86 - Wprowadzenie **&** Risc-V - Konsultacje | 23.04 | 23.04 | 7.05 | 7.05
-Intel x86 - Sprawdzian, Konsultacje	| 14.05 | 14.05 | | 
-Risc-V - Termin oddania projektów **&** Intel x86 - Rozdanie projektów	| 21.05 @ **17<sup>15</sup>** | 21.05 @ **19<sup>15</sup>** | 21.05 @ **16<sup>15</sup>** | 21.05 @ **18<sup>15</sup>**
+Intel x86 - Sprawdzian	| 14.05 | 14.05 | | 
+Risc-V - Termin oddania projektów, Konsultacje	| 21.05 @ **17<sup>15</sup>** | 21.05 @ **19<sup>15</sup>** | 21.05 @ **16<sup>15</sup>** | 21.05 @ **18<sup>15</sup>**
 Intel x86 - Sprawdzian, Konsultacje	| | | 28.05 | 28.05
 Intel x86 - Termin oddania projektów | 4.06 @ **17<sup>15</sup>** | 4.06 @ **19<sup>15</sup>** | 4.06 @ **16<sup>15</sup>** | 4.06 @ **18<sup>15</sup>**
 
