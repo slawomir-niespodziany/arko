@@ -1,4 +1,4 @@
-# Arytmetyka stałoprzecinkowa
+# Arytmetyka stałoprzecinkowa (Work in progress)
 
 ## Problem
 Jakiego typu zmiennych należy użyć, aby rozwiązać następujący problem:
