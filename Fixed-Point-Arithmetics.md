@@ -108,6 +108,8 @@ Na potrzeby dalszych rozważań przyjmijmy słowo procesora o długości N=32b. 
 <tr><td>Wartość liczby</td><td colspan=4>2 + 1 + 0 + 0.25 = 3.25<sub>10</sub></td></tr>
 </table>
 
+<hr>
+
 przykłady
 
 Dla ostatniego przykładu - wartości binarnej ułamkowej - przyjmijmy, że przecinka nie musimy zawsze umieszczać w zapisie liczby, a jedynie umawiamy się że on tam występuje. Dodatkowo w systemie komputerowym zawsze będize istnieć dokładna ilość bitów na jakich można zapisywać wartości liczbowe - odpowiadająca wielkością słowu procesora - zwykle 32, lub 64 bity, ale może zdażyć się też np. 8b. 
