@@ -77,7 +77,7 @@ Wymagania dotyczące implementacji projektu Risc-V (ich nieprzestrzeganie będzi
 
 - Projekt podlega obronie w momencie oddania. 
 
-### Projekt Intel-x86
+## Projekt Intel-x86
 Wymagania dotyczące implementacji projektu Intel-x86 (ich nieprzestrzeganie będzie skutkować obniżeniem oceny):
 - Projekt powinien być programem hybrydowym - część napisana w języku C/C++, a część w asemblerze,
 - Kod C/C++ jest niezbędny do uzyskania pozytywnej oceny i musi działać, ale jego jakość nie jest oceniana,
@@ -105,6 +105,7 @@ while(true) {
 }
 ````
 
+Część Assembly:
 - Część asemblerowa powinna być jedną funkcją,
 - Pojedyncze wywołanie funkcji asemblerowej powinno realizować kompletny wynik działania algorytmu (np. renderować cały obraz, a nie pojedyncze piksele), 
 - Kod asemblerowy powinien używać liczb zmiennoprzecinkowych (float lub double),
