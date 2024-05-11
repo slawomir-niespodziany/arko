@@ -79,4 +79,33 @@ Wymagania dotyczące implementacji projektu Risc-V (ich nieprzestrzeganie będzi
 
 ### Projekt Intel-x86
 Wymagania dotyczące implementacji projektu Intel-x86 (ich nieprzestrzeganie będzie skutkować obniżeniem oceny):
-TBD
+- Projekt powinien być programem hybrydowym - część napisana w języku C/C++, a część w asemblerze,
+- Kod C/C++ jest niezbędny do uzyskania pozytywnej oceny i musi działać, ale jego jakość nie jest oceniana,
+- Projekt NIE musi operować na plikach BMP,
+
+Część C/C++:
+- Program powinien być interaktywny - w trakcie działania programu użytkownik powinien mieć możliwość zmiany parametrów algorytmu (np. użycie myszki i do przybliżenia/oddalania, lub klawiszy na klawiaturze do zmiany parametrów) i obserwacji wyniku działania,
+- Program powinien korzystać z dowolnej biblioteki graficznej (Allegro, OpenGL etc.) do obsługi interakcji z użytkownikiem (klawiatura/mysz), wczytywania (jeżeli konieczne) i wyświetlania grafiki, zapisywanie wyniku w pliku nie jest konieczne,
+- Alokacja zasobów powinna odbyć się na poziomie C/C++ - do funkcji asemblerowej powinny być przekazywane dane wejściowe oraz już zaalokowane bufory na dane wyjściowe,
+- Przykładowy prototyp funkcji asemblerowej:
+
+void f(int width, int height, char *pInputImg, char *pOutputImg, int algoSpecificParam0, float algoSpecificParam1, ...);
+
+- Przykładowa implementacja części wysokopoziomowej w pseudokodzie:
+ 
+````{verbatim}
+allocateBuffers();
+readDataFromFiles(); // if required
+setParamsToDefaultValues();
+while(true) {
+	f(...); // call assembly function
+	displayResult();
+	readUserInput(); // this function shall block and wait for user interaction
+	modifyParams(); // according to user input
+}
+````
+
+- Część asemblerowa powinna być jedną funkcją,
+- Pojedyncze wywołanie funkcji asemblerowej powinno realizować kompletny wynik działania algorytmu (np. renderować cały obraz, a nie pojedyncze piksele), 
+- Kod asemblerowy powinien używać liczb zmiennoprzecinkowych (float lub double),
+- Można (nie trzeba) korzystać z jednostek wektorowych,
