@@ -110,3 +110,4 @@ Część Assembly:
 - Pojedyncze wywołanie funkcji asemblerowej powinno realizować kompletny wynik działania algorytmu (np. renderować cały obraz, a nie pojedyncze piksele), 
 - Kod asemblerowy powinien używać liczb zmiennoprzecinkowych (float lub double),
 - Można (nie trzeba) korzystać z jednostek wektorowych,
+- Implementacja wersji 64b jest oceniana w skali do 8p (implementacja wersji 32b nie jest konieczna),
