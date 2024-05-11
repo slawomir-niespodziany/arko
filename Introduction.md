@@ -81,11 +81,11 @@ Wymagania dotyczące implementacji projektu Risc-V (ich nieprzestrzeganie będzi
 Wymagania dotyczące implementacji projektu Intel-x86 (ich nieprzestrzeganie będzie skutkować obniżeniem oceny):
 - Projekt powinien być programem hybrydowym - część napisana w języku C/C++, a część w asemblerze,
 - Kod C/C++ jest niezbędny do uzyskania pozytywnej oceny i musi działać, ale jego jakość nie jest oceniana,
-- Projekt NIE musi operować na plikach BMP,
 
 Część C/C++:
-- Program powinien być interaktywny - w trakcie działania programu użytkownik powinien mieć możliwość zmiany parametrów algorytmu (np. użycie myszki i do przybliżenia/oddalania, lub klawiszy na klawiaturze do zmiany parametrów) i obserwacji wyniku działania,
+- Program powinien być interaktywny - w trakcie działania programu użytkownik powinien mieć możliwość zmiany parametrów działania algorytmu (użycie myszki - np. do przybliżenia/oddalania - lub klawiszy na klawiaturze) i obserwacji wyniku działania,
 - Program powinien korzystać z dowolnej biblioteki graficznej (Allegro, OpenGL etc.) do obsługi interakcji z użytkownikiem (klawiatura/mysz), wczytywania (jeżeli konieczne) i wyświetlania grafiki, zapisywanie wyniku w pliku nie jest konieczne,
+- Projekt NIE musi operować na plikach BMP, rekomendowane jest użycie typów do obsługi grafiki zapewnianych przez wybraną bibliotekę graficzną,
 - Alokacja zasobów powinna odbyć się na poziomie C/C++ - do funkcji asemblerowej powinny być przekazywane dane wejściowe oraz już zaalokowane bufory na dane wyjściowe,
 - Przykładowy prototyp funkcji asemblerowej:
 
