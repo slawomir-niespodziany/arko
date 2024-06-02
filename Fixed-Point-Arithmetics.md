@@ -1,3 +1,4 @@
+
 # Arytmetyka stałoprzecinkowa (Work in progress)
 
 ## Problem
@@ -6,32 +7,34 @@ Jakiego typu zmiennych należy użyć, aby rozwiązać następujący problem:
 3.0 + 1.5 = ?
 ````
 
-Pierwszym wyborem będzie oczywiście typ <i>zmiennoprzecinkowy</i> (float/double), który natywnie (w sposób naturalny dla procesora) zapewnia obsługę liczb ułamkowych. Niestety, nie zawsze można go użyć. Wiele (w szczególności mniejszych) architektur może nie posiadać jednostki zmiennopozycyjnej (jest to dodatkowy krzem, który kosztuje) i arytmetyka zmiennoprzecinkowa może być tam (co najwyżej) emulowana software\`owo (a to trwa). 
-Alternatywnym rozwiązaniem jest użycie typu <i>całkowitoliczbowego</i> (integer). Mniej oczywistym, gdyż przenosi część odpowiedzialności na programistę. Procesor nie posiada kompletu informacji na temat rozwiązywanego problemu - w szczególności - nie wie o istnieniu kropki dziesiętnej:
+Pierwszym wyborem będzie oczywiście typ <i>zmiennoprzecinkowy</i> (float/double), który natywnie (w sposób naturalny dla procesora) zapewnia obsługę liczb ułamkowych. Niestety, nie zawsze można go użyć. Wiele, w szczególności mniejszych architektur może nie posiadać jednostki zmiennopozycyjnej - jest to dodatkowy krzem, stanowiący koszt - i arytmetyka zmiennoprzecinkowa może być tam - w najlepszym przypadku - emulowana software\`owo - a to trwa. 
+Alternatywnym rozwiązaniem jest użycie typu <i>całkowitoliczbowego</i> (integer). Mniej oczywistym, gdyż przenosi część odpowiedzialności na programistę. Procesor nie posiada kompletu informacji na temat rozwiązywanego problemu - w szczególności - nie wie o istnieniu kropki dziesiętnej/binarnej:
 ````{verbatim}
 30 + 15 = ? 
 ````
 
-Rozwiązanie problemu składa się z trzech etapów:
+Rozwiązanie problemu należy rozbić na trzy kroki:
 1. Przed wprowadzeniem danych do algorytmu programista/użytkownik musi usunąć kropkę i wyrazić wszystkie wartości w postaci liczb całkowitych,
-2. Algorytm, operujący wyłącznie na liczbach całkowitych, wykonuje obliczenia,
-3. Wynik, otrzymany również w postaci wartości całkowitej, musi zostać zinterpretowany w odpowiedni sposób - z uwzględnieniem kropki w odpowiednim miejscu,
+2. Algorytm, operując wyłącznie na liczbach całkowitych, wykonuje obliczenia,
+3. Wynik, otrzymany w postaci wartości całkowitej, musi zostać zinterpretowany w odpowiedni sposób - z uwzględnieniem kropki w odpowiednim miejscu,
  
 ````{verbatim}
 // Etap 1 (wprowadzanie danych):
 uint8_t a = 30, b = 15; // 3.0 -> 30, 4.5 -> 45
 
-// Etap 2 (obliczenia - tylko wartości całkowite):
+// Etap 2 (obliczenia na typie całkowitym):
 uint8_t c = a + b; // c == 45
 
 // Etap 3 (interpretacja wyniku):
-// 45 -> 4.5
+if (45 <= c) { // -> (4.5 <= c)
+...
+}
 ````
 
 W powyższym przykładzie przyjęlismy niejawnie, że wartości na których operujemy, składają się z dwóch cyfr dziesiętnych. Jednej cyfry całkowitej i jednej ułamkowej. Taki przykładowy format nazywamy <b>stałoprzecinkowym</b>, gdyż przecinek  zawsze wystepuje w tym samym miejscu. 
 Niewątpliwą zaletą takiego rozwiązania jest możliwość implementacji obliczeń przy użyciu wyłącznie liczb całkowitych. Dla procesora je wykonującego jest istotna tylko sumaryczna ilość użytych znaków, a podział na całkowite vs ułamkowe nie ma znaczenia.  Oczywiście, procesor nie operuje na znakach dziesiętnych, a na bitach. 
 
-W dalszej części omówimy jak tego typu obliczenia zaimplementować w systemie <b>stałoprzecinkowym dwójkowym</b> - naturalnym dla procesora. 
+W dalszej części omówimy jak tego typu obliczenia zaimplementować w systemie <b>stałoprzecinkowym dwójkowym</b> - naturalnym dla procesora, w przeciwieństwie do dziesietnego. 
 
 > [!WARNING]
 > ### Dlaczego użycie systemu o podstawie 10 będzie błędem?
@@ -44,7 +47,7 @@ W dalszej części omówimy jak tego typu obliczenia zaimplementować w systemie
 ## System pozycyjny
 Na początek uogólnijmy działanie systemu pozycyjnego na przykładzie systemu dziesiętnego. 
 
-Liczba składa sie z cyfr. To jaką wartość każda z cyfr wnosi do liczby, wynika z tego jaka to cyfra <b>oraz</b> na jakiej pozycji w liczbie się znajduje - dokładniej - z iloczynu cyfry oraz wagi pozycji. Waga każdej pozycji w liczbie jest wynikiem podniesienia podstawy systemu (10 dla dziesiętnego) do potęgi odpowiadającej indeksowi pozycji. Indeksem pozycji jest odległość od najmłodszej cyfry całkowitej (dodatnia w lewo, ujemna w prawo). Poniższa tabela obrazuje to na przykładzie:
+Liczba składa sie z cyfr. To jaką wartość każda z cyfr wnosi do liczby, wynika z tego jaka to cyfra <b>oraz</b> na jakiej pozycji w liczbie się znajduje - dokładniej - z iloczynu cyfry oraz wagi jej pozycji. Waga każdej pozycji w liczbie jest wynikiem podniesienia podstawy systemu (10 dla dziesiętnego) do potęgi odpowiadającej indeksowi pozycji. Indeksem pozycji jest odległość od najmłodszej cyfry całkowitej (dodatnia w lewo, ujemna w prawo). Poniższa tabela obrazuje to na przykładzie:
 <table>
 <tr><td>Podstawa systemu</td><td colspan=3>10</td></tr>
 <tr><td>Liczba</td><td colspan=3>127<sub>10</sub></td></tr>
@@ -88,15 +91,7 @@ oraz ułamkowych:
 <tr><td>Wartość liczby</td><td colspan=4>2 + 1 + 0 + 0.25 = 3.25<sub>10</sub></td></tr>
 </table>
 
-Analogicznie jak dla wartości całkowitych, jeżeli zachodzi potrzeba posługiwania się liczbami ujemnymi, to możemy zastosować kodowanie U2, gdzie waga najstarszego bitu będzie ujemna. Pozwoli to na użycie natywnie wspieranych operacji na liczbach całkowitych ze znakiem, nawet dla wartości z "wirtualnym" przecinkiem - ułamkowych.
-
-## Wybór prawidłowego formatu
-System komputerowy, w którym będziemy implementowali arytmetykę stałoprzecinkową zwykle będzie charakteryzował się konkretną wielkością słowa procesora. Często będzie to 32b, lub 64b, ale mogą się zdarzyć także inne długości np. 8b, 16b, 128b - mniejsze mikrokontrolery, procesory sygnałowe, lub jednostki wektorowe. W specyficznych przypadkach autor rozwiązania może wręcz mieć kontrolę nad tym jak długie będzie używane słowo binarne - logika programowalna (FPGA), lub dedykowany hardware (ASIC). Zawsze przed wyborem konkretnego formatu należy ustalić szerokość słowa na którym będą prowadzone operacje. Warto zwrócić uwagę na to, że gdy używamy systemu dziesiętnego na kartce papieru, ilość znaków przed i po przecinku jest nieograniczona - w systemie komputerowym już tak nie jest. 
-
-Na potrzeby dalszych rozważań przyjmijmy słowo procesora o długości N=32b. W kolejnym kroku należy okreslić ile z tych bitów przeznaczymy na część całkowitą, a ile na ułamkową. Konsekwencją tego wyboru będą dwa parametry - <b>zakres</b> wartości możliwy do wyrażenia przy pomocy wynikowego formatu (czyli maksimum dla liczb bez znaku, lub minimum oraz maksimum dla liczb ze znakiem) <b>oraz</b> jego <b>rozdzielczość</b> (najmniejsza wartość o jaką moga się różnić dwie liczby). Przy ustalaniu tego podziału należy kierować się dwiema zasadami w nastepującej kolejności:
-1. Przeznaczyć na część całkowitą tyle bitów (ale nie więcej), aby zapewnić możliwość wyrażenia wszystkich wartości z zakresu wymaganego przez dziedzinę problemu - wartości wejściowych, wyniku/wyników oraz wszystkich wyników pośrednich. 
-2. Zmaksymalizować ilość bitów ułamkowych, aby zwiększyć precyzję obliczeń.
-
+Analogicznie jak dla wartości całkowitych, jeżeli zachodzi potrzeba posługiwania się liczbami ujemnymi, to możemy zastosować kodowanie U2, gdzie waga najstarszego bitu będzie ujemna. Pozwoli to na użycie natywnie wspieranych operacji na liczbach całkowitych ze znakiem.
 
 <table>
 <tr><td>Podstawa systemu</td><td colspan=4>2</td></tr>
@@ -107,6 +102,17 @@ Na potrzeby dalszych rozważań przyjmijmy słowo procesora o długości N=32b. 
 <tr><td>Wartość wnoszona</td><td>1 &middot; 2 = 2</td><td>1 &middot; 1 = 1</td><td>0 &middot; 0.5 = 0</td><td>1 &middot; 0.25 = 0.25</td></tr>
 <tr><td>Wartość liczby</td><td colspan=4>2 + 1 + 0 + 0.25 = 3.25<sub>10</sub></td></tr>
 </table>
+
+
+## Wybór prawidłowego formatu
+System komputerowy, w którym będziemy implementowali arytmetykę stałoprzecinkową zwykle będzie charakteryzował się konkretną wielkością słowa procesora. Często będzie to 32b, lub 64b, ale mogą się zdarzyć także inne długości np. 8b, 16b, 128b - mniejsze mikrokontrolery, procesory sygnałowe, lub jednostki wektorowe. W specyficznych przypadkach autor rozwiązania może wręcz mieć kontrolę nad tym jak długie będzie używane słowo binarne - logika programowalna (FPGA), lub dedykowany hardware (ASIC). Zawsze przed wyborem konkretnego formatu należy ustalić szerokość słowa na którym będą prowadzone operacje. Warto zwrócić uwagę na to, że gdy używamy systemu dziesiętnego na kartce papieru, ilość znaków przed i po przecinku jest nieograniczona - w systemie komputerowym już tak nie jest. 
+
+Na potrzeby dalszych rozważań przyjmijmy słowo procesora o długości N=32b. W kolejnym kroku należy okreslić ile z tych bitów przeznaczymy na część całkowitą, a ile na ułamkową. Konsekwencją tego wyboru będą dwa parametry - <b>zakres</b> wartości możliwy do wyrażenia przy pomocy wynikowego formatu (czyli maksimum dla liczb bez znaku, lub minimum oraz maksimum dla liczb ze znakiem) <b>oraz</b> jego <b>rozdzielczość</b> (najmniejsza wartość o jaką moga się różnić dwie liczby). Przy ustalaniu tego podziału należy kierować się dwiema zasadami w nastepującej kolejności:
+1. Przeznaczyć na część całkowitą tyle bitów (ale nie więcej), aby zapewnić możliwość wyrażenia wszystkich wartości z zakresu wymaganego przez dziedzinę problemu - zakresu danych wejściowych, wyniku obliczeń oraz wyników pośrednich. 
+2. Zmaksymalizować ilość bitów ułamkowych, aby zwiększyć precyzję obliczeń.
+
+
+
 
 <hr>
 
