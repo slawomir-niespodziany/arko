@@ -1,6 +1,6 @@
 ## Tematy projektów Risc-V:
 
-[Zapisy](https://wutwaw-my.sharepoint.com/:x:/g/personal/slawomir_niespodziany_pw_edu_pl/EfozflIIWVNJjU0nLy_ljvEBdb5hq9U9lQT2iPgtO6g9SA?e=WnaiLe)
+[Zapisy](https://wutwaw-my.sharepoint.com/:x:/g/personal/slawomir_niespodziany_pw_edu_pl/EfozflIIWVNJjU0nLy_ljvEBPkPs6LIBY9-uADJj5korNg?e=4JSiNT)
 
 1. Rozciągnięcie histogramu + wyrównanie histogramu obrazu. Wyniki w !osobnych! plikach BMP. Porównanie histogramów.
 2. Powiększenie obrazu metodą interpolacji dwuliniowej. 
