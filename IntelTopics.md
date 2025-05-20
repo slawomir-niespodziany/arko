@@ -11,7 +11,7 @@ maska = | -1  5 -1 | + |  2 -4  2 | * w, gdzie w = min(1, r / (min(width, height
 ```
 5. Filtracja obrazu przy pomocy filtru Prewitt`a. Płynnie modyfikowalny kierunek filtracji. 
 6. Obroty sceny 3D złożonej z punktów i łączących je linii (bez powierzchni). Rzutowanie perspektywiczne, szkielet czworościanu. 
-7. Alpha-blending wg wzoru sinus, wokół punktu wybieranego interaktywnie.
+7. Alpha-blending pomiędzy dwoma obrazami, wg wzoru sinus, wokół punktu wybieranego interaktywnie.
 8. Efekt Swirl na wczytanym obrazku. Interaktywnie modyfikowalne parametry.
 9. Rzutowanie ortogonalne czworościanu - rózne kolory ścian, obrót w minimum dwóch płaszczyznach, z-buffer.
 10. Przekształcenie afiniczne na obrazie 2D w czasie rzeczywistym (obrót + translacja).
